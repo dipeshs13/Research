@@ -8,6 +8,20 @@
 </head>
 <body>
     <?php include'header.php';?>
-    this is the UserLogin page.
+    <div class="login-container">
+        <form action="#" method="post" id="loginForm">
+            <h2>User Login</h2>
+            <div class="loginform-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="loginform-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="loginform-group">
+                <button type="submit" class="btn-login">Login</button>
+            </div>
+    </div>
 </body>
 </html>
