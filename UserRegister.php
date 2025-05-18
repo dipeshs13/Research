@@ -9,7 +9,7 @@
 <body>
 <?php include'header.php';?>
     <div class="register-container">
-        <form action="#" method="post" id="registerForm">
+        <form action="includes/signup.inc.php" method="post" id="registerForm">
             <h2>User Registration</h2>
             <div class="form-group">
                 <label for="firstname">FirstName:</label>
@@ -31,7 +31,7 @@
                 <input type="password" id="confirm_password" name="confirm_password" required>
             </div>
             <div class="form-group">
-                <button type="submit" class="btn-submit">Register</button>
+                <button type="submit" name="reg" class="btn-submit">Register</button>
             </div>
         </form>
     </div>
