@@ -9,7 +9,7 @@
 <body>
     <?php include'header.php';?>
     <div class="login-container">
-        <form action="#" method="post" id="loginForm">
+        <form action="includes/login.inc.php" method="post" id="loginForm">
             <h2>User Login</h2>
             <div class="loginform-group">
                 <label for="email">Email:</label>

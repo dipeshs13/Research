@@ -11,7 +11,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     include '../classes/signup.classes.php';
     include '../classes/signup.contro.php';
-    
+
+    $sign_up = new Signup_contro($firstname, $lastname, $email, $password, $confirmPassword);
+
+    $sign_up->signupUser();
+    header("location:../index.php?signupSuccessfull");
+    exit();
 }
 
 

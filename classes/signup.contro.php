@@ -30,6 +30,7 @@ class Signup_contro extends Signup {
             header('location:../UserRegister.php?error=User already exist');
             exit();
         }
+        $this->setUser($this->firstname, $this->lastname, $this->email, $this->password);
     }
     private function emptyInput(){
         $result = true;
