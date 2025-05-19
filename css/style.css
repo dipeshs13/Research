@@ -341,3 +341,123 @@
 .btn-login:hover {
     background-color: #e64500;
 }
+
+#loginLink {
+    text-decoration: none;
+    color: #ff4f00;
+    font-weight: bold;
+    text-align: center;
+    transition: color 0.3s ease;
+}
+
+#ResearcherLink {
+    text-decoration: none;
+}
+
+
+/* Researcher Reg */
+
+.researcher-reg-form {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.researcher-reg-form h2 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.form-grid label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #555;
+}
+
+.form-grid input,
+.form-grid textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.form-grid input:focus,
+.form-grid textarea:focus {
+    border-color: #ff4f00;
+    box-shadow: 0 0 5px rgba(255, 79, 0, 0.5);
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.researcher-reg-form button {
+    width: 200px;
+    padding: 10px;
+    background-color: #ff4f00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.researcher-reg-form button:hover {
+    background-color: #e64500;
+}
+
+#researcher-login-link {
+    text-decoration: none;
+    color: #ff4f00;
+    font-weight: bold;
+    text-align: center;
+    transition: color 0.3s ease;
+}
+
+#researcher-login-link:hover {
+    color: #e64500;
+    text-decoration: underline;
+}
+
+#researcherpara {
+    text-align: center;
+}
+
+#biography {
+    resize: none;
+    /* overflow: hidden; */
+}
+
+#ResearcherLogin {
+    text-decoration: none;
+    color: #ff4f00;
+    font-weight: bold;
+    text-align: center;
+    transition: color 0.3s ease;
+}
+
+#UserLogin {
+    text-decoration: none;
+    color: #ff4f00;
+    font-weight: bold;
+    text-align: center;
+    transition: color 0.3s ease;
+}
