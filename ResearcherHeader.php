@@ -27,7 +27,7 @@
                 <li>
                     <a href="#">
                         <span>
-                            Statistics
+                            Upload PDF
                         </span>
                     </a>
                 </li>
