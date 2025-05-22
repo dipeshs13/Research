@@ -8,59 +8,53 @@
 </head>
 <body>
     <div class="sidebar">
-        <div class="logo"> </div>
+        <div class="logo">Researcher Panel</div>
             <ul class="menu">
                 <li class="active">
-                    <a href="#">
+                    <a href="ResearcherDashboard.php">
                         <span>
                             Dashboard
                         </span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="ResearcherProfile.php">
                         <span>
                             Profile
                         </span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="ResearcherUpload.php">
                         <span>
-                            Upload PDF
+                            Upload Research Paper
                         </span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="ResearcherSubmission.php">
                         <span>
-                            Careers
+                            My Submissions
                         </span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="ResearcherCitations.php">
                         <span>
-                            FAQ
+                            Citations
                         </span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="ResearcherReviews.php">
                         <span>
-                            Testimonials
+                            Reviews
                         </span>
                     </a>
                 </li>
+    
                 <li>
-                    <a href="#">
-                        <span>
-                            Settings
-                        </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="logout">
+                    <a href="ResearcherLogout.php" class="logout">
                         <span>
                             Logout
                         </span>
