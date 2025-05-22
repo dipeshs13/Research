@@ -9,78 +9,16 @@ include 'ResearcherHeader.php';
   <title>Citations</title>
   <link rel="stylesheet" href="css/Researcher.css" />
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      display: flex;
-    }
-
+   
     
 
-    .main-content {
-      flex: 1;
-      background-color: #f4f4f4;
-      padding: 30px;
-    }
-
-    .citations-header {
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-
-    .citation-table-container {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    table th,
-    table td {
-      padding: 12px 10px;
-      border-bottom: 1px solid #ddd;
-      text-align: left;
-    }
-
-    table th {
-      background-color: #f0f0f0;
-    }
-
-    .view-btn {
-      padding: 6px 10px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .view-btn:hover {
-      background-color: #0056b3;
-    }
-
-    .chart-placeholder {
-      margin-top: 30px;
-      background: #e0e0e0;
-      height: 250px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #555;
-      border-radius: 10px;
-      font-style: italic;
-    }
+    
   </style>
 </head>
 <body>
   
 
-  <div class="main-content">
+  <div class="citations-content">
     <div class="citations-header">Citations Overview</div>
 
     <div class="citation-table-container">

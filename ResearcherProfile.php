@@ -6,92 +6,11 @@
   <title>Researcher Profile</title>
   <link rel="stylesheet" href="css/Researcher.css" />
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      display: flex;
-    }
+   
 
-    .sidebar {
-      width: 220px;
-      background-color: #1a1a2e;
-      color: white;
-      height: 100vh;
-      padding: 20px;
-    }
+  
 
-    .main-content {
-      flex: 1;
-      background-color: #f4f4f4;
-      padding: 30px;
-    }
-
-    .profile-header {
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-
-    .profile-container {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 700px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .profile-pic {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .profile-pic img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-
-    .profile-form label {
-      display: block;
-      margin-top: 15px;
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-
-    .profile-form input,
-    .profile-form textarea {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    .profile-form textarea {
-      resize: vertical;
-      height: 100px;
-    }
-
-    .save-btn {
-      margin-top: 20px;
-      background-color: #007bff;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .save-btn:hover {
-      background-color: #0056b3;
-    }
-
-    .change-password {
-      margin-top: 40px;
-    }
-
-    .change-password h3 {
-      margin-bottom: 10px;
-    }
+    
   </style>
 </head>
 <body>
@@ -113,7 +32,7 @@
    <?php 
 include 'ResearcherHeader.php';
 ?>
-  <div class="main-content">
+  <div class="profile-content">
     <div class="profile-header">My Profile</div>
 
     <div class="profile-container">

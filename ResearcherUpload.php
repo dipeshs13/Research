@@ -9,73 +9,17 @@ include 'ResearcherHeader.php';
   <title>Upload Research Paper</title>
   <link rel="stylesheet" href="css/Researcher.css" />
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      display: flex;
-    }
+    
 
     
 
-    .main-content {
-      flex: 1;
-      background-color: #f4f4f4;
-      padding: 30px;
-    }
-
-    .upload-header {
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-
-    .upload-container {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 700px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .upload-form label {
-      display: block;
-      margin-top: 15px;
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-
-    .upload-form input,
-    .upload-form textarea,
-    .upload-form select {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    .upload-form textarea {
-      resize: vertical;
-      height: 120px;
-    }
-
-    .upload-btn {
-      margin-top: 20px;
-      background-color: #007bff;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .upload-btn:hover {
-      background-color: #0056b3;
-    }
+    
   </style>
 </head>
 <body>
   
 
-  <div class="main-content">
+  <div class="upload-content">
     <div class="upload-header">Upload Research Paper</div>
 
     <div class="upload-container">
