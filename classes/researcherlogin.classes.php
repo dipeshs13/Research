@@ -1,4 +1,5 @@
 <?php
+session_start();
 class Researcherlogin extends dbh_Connection {
     public function getResearcher($email, $password){
         $query = 'SELECT * FROM Researcher WHERE r_email = ?';
@@ -20,7 +21,7 @@ class Researcherlogin extends dbh_Connection {
             if(password_verify($password, $researcher['r_password'])) {
                 $_SESSION['researcherId'] = $researcher['r_id'];
                 $_SESSION['researcherfullname'] = $researcher['r_fullname'];
-                header('location:../index.php?loginSuccessfull');
+                header('location:../ResearcherDashboard.php?loginSuccessfull');
                 exit();
             } else {
                 header('location:../ResearcherLogin.php?error=wrongpassword');

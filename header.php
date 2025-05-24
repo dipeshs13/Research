@@ -6,13 +6,14 @@ if(isset($_SESSION['userId'])){
     $userFirstname = $_SESSION['userfirstname'];
     $userLastname = $_SESSION['userlastname'];
 } 
+
 ?>
 <nav id="navbar">
     <div id="navbar-inner">
-        <a class="brand" href="index.php">Research Paper</a>
+        <a class="brand" href="./">Research Paper</a>
         <div class="nav-container">
             <ul class="nav-navbar">
-                <li><a href="index.php">Home</a></li>
+                <li><a href="./">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="PDF.php">PDF</a></li>
                 <?php

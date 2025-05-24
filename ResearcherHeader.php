@@ -1,12 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/Researcher.css">
-</head>
-<body>
+<?php
+session_start();
+if(!isset($_SESSION['researcherId'])){
+    header('location: ResearcherLogin.php');
+    exit();
+}
+if(isset($_SESSION['researcherId'])){
+    $researcherId = $_SESSION['researcherId'];
+    $researcherFullname = $_SESSION['researcherfullname'];
+}
+
+?>
+
     <div class="sidebar">
         <div class="logo">Researcher Panel</div>
             <ul class="menu">
@@ -53,15 +57,19 @@
                     </a>
                 </li>
     
-                <li>
-                    <a href="ResearcherLogout.php" class="logout">
-                        <span>
-                            Logout
-                        </span>
-                    </a>
-                </li>
+                <?php 
+                if($researcherId){
+                    echo '
+                    <li>
+                    
+                        <a href="logout.php" class="logout">
+                            <span>
+                                Logout
+                            </span>
+                        </a>
+                    </li>';
+                }
+                ?>
             </ul>
         
     </div>
-</body>
-</html>
