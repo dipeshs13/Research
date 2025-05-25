@@ -26,7 +26,7 @@ include 'ResearcherHeader.php';
         <label for="keywords">Keywords </label>
         <input type="text" id="keywords" name="keywords" required />
 
-        <label for="fieldofstudy">Field of Study</label>
+        <label for="fieldofstudy">Field of Study</label> 
         <input type="text" id="fieldofstudy" name="fieldofstudy" placeholder="Enter Field of Study" />
 
         <label for="coauthors">Co-Author(s) Name(s)</label>

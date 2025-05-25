@@ -461,3 +461,55 @@
     text-align: center;
     transition: color 0.3s ease;
 }
+
+
+/* PDF css */
+
+.pdf-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.pdf-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    width: 200px;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.pdf-card:hover {
+    transform: scale(1.03);
+}
+
+.pdf-preview {
+    width: 100px;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.pdf-card h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.view-btn {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.3s;
+}
+
+.view-btn:hover {
+    background-color: #45a049;
+}

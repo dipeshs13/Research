@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +9,12 @@
 </head>
 <body>
   <?php 
+  require_once 'includes/dbh.inc.php';
 include 'ResearcherHeader.php';
+include 'classes/researcherdata.classes.php';
+$researcherData = new Researcherdata_classes();
+$reseacher_Submissions = $researcherData->TotalSubmissions($researcherId);
+$TotalPendingPapers = $researcherData->TotalPending($researcherId);
 ?>
 
   <div class="dasbboard-content">
@@ -18,12 +22,12 @@ include 'ResearcherHeader.php';
 
     <div class="stats-container">
       <div class="stat-card">
-        <div class="stat-number">5</div>
+        <div class="stat-number"><?php echo $reseacher_Submissions; ?></div>
         <div>Total Submissions</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number">2</div>
-        <div>Under Review</div>
+        <div class="stat-number"><?php echo $TotalPendingPapers; ?></div>
+        <div>Under Pending</div>
       </div>
       <div class="stat-card">
         <div class="stat-number">3</div>

@@ -1,0 +1,636 @@
+* {
+    margin: 0px;
+}
+
+
+/* admin login */
+
+.adlogin-container {
+    width: 400px;
+    margin: 50px auto;
+    padding: 40px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    font-family: "Roboto", sans-serif;
+}
+
+.adlogin-container h2 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#adloginForm {
+    padding-right: 20px;
+}
+
+.adloginform-group {
+    margin-bottom: 15px;
+}
+
+.adloginform-group label {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.adloginform-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.adloginform-group input:focus {
+    outline: none;
+    border-color: #ff4f00;
+    box-shadow: 0 0 5px rgba(255, 79, 0, 0.5);
+}
+
+.adbtn-login {
+    width: 100%;
+    padding: 10px;
+    margin-left: 10px;
+    background-color: #ff4f00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.adbtn-login:hover {
+    background-color: #e64500;
+}
+
+
+/* admin header */
+
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+}
+
+.sidebar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 240px;
+    height: 100vh;
+    padding: 0 1.7rem;
+    color: #fff;
+    overflow: hidden;
+    transition: all 0.5s linear;
+    background-color: #b71828;
+}
+
+.logo {
+    height: 80px;
+    padding: 16px;
+    font: 30px;
+}
+
+.menu {
+    height: 88%;
+    position: relative;
+    list-style: none;
+    padding: 0;
+}
+
+.menu li {
+    padding: 1rem;
+    margin: 8px 0;
+    border-radius: 8px;
+    transition: all 0.5s ease-in-out;
+}
+
+.menu a {
+    color: #fff;
+    font-size: 17px;
+    font-weight: 800;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.menu a span {
+    overflow: hidden;
+}
+
+.logout {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+
+/* Admin Dashboard */
+
+.dashboardmain-content {
+    margin-left: 100px;
+    padding: 30px;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+}
+
+.dashboard-header {
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+.cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 220px;
+    text-align: center;
+}
+
+.card h2 {
+    margin: 10px 0;
+    font-size: 28px;
+}
+
+.recent-table {
+    margin-top: 40px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.recent-table h3 {
+    margin-bottom: 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 12px;
+    border-bottom: 1px solid #ccc;
+    text-align: left;
+}
+
+th {
+    background-color: #f0f0f0;
+}
+
+
+/* Pending Paper */
+
+.pendingmain-content {
+    margin-left: 200px;
+    padding: 30px;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+}
+
+.page-title {
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+.pending-table {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pending-table h3 {
+    margin-bottom: 15px;
+}
+
+#pendingPapersTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.paper-desc1,
+.paper-desc {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.paper-desc1 {
+    background-color: #f0f0f0;
+}
+
+.btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-approve {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.btn-reject {
+    background-color: #f44336;
+    color: white;
+}
+
+.btn-view {
+    background-color: #2196F3;
+    color: white;
+}
+
+.action-btns {
+    display: flex;
+    gap: 8px;
+}
+
+
+/* Approved Papers */
+
+.approvedmain-content {
+    margin-left: 220px;
+    padding: 30px;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+}
+
+.approved-table {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.approved-table h3 {
+    margin-bottom: 15px;
+}
+
+#approvedPapersTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.approved-paper-heading,
+.approved-paper-content {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.approved-paper-heading {
+    background-color: #f0f0f0;
+}
+
+.appbtn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.appbtn-view {
+    background-color: #2196f3;
+    color: white;
+}
+
+.appbtn-revoke {
+    background-color: #f44336;
+    color: white;
+}
+
+.appaction-btns {
+    display: flex;
+    gap: 8px;
+}
+
+
+/* All Papers */
+
+.allmain-content {
+    margin-left: 220px;
+    padding: 30px;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+}
+
+.allpaper-table {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.allPapersTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.allpaper-heading,
+.allpaper-content {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.allpaper-heading {
+    background-color: #f0f0f0;
+}
+
+.allbtn-view {
+    padding: 6px 12px;
+    background-color: #2196f3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.status-approved {
+    color: green;
+    font-weight: bold;
+}
+
+.status-pending {
+    color: orange;
+    font-weight: bold;
+}
+
+.status-rejected {
+    color: red;
+    font-weight: bold;
+}
+
+
+/* All Reviews */
+
+.reviewmain-content {
+    margin-left: 150px;
+    padding: 30px;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+}
+
+.reviews-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.review-card {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+}
+
+.review-card:last-child {
+    border-bottom: none;
+}
+
+.review-meta {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.review-content {
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.rating {
+    display: inline-block;
+    padding: 4px 10px;
+    background-color: #2196f3;
+    color: white;
+    border-radius: 12px;
+    font-size: 13px;
+}
+
+.rating.excellent {
+    background-color: #4caf50;
+}
+
+.rating.good {
+    background-color: #ffc107;
+}
+
+.rating.fair {
+    background-color: #ff5722;
+}
+
+
+/* All Citations */
+
+.citationsmain-content {
+    margin-left: 220px;
+    padding: 30px;
+    width: 50%;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+}
+
+.citation-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.citation-card {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+}
+
+.citation-card:last-child {
+    border-bottom: none;
+}
+
+.paper-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.citation-meta {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.citation-source {
+    font-size: 15px;
+    margin-bottom: 8px;
+    color: #007acc;
+    word-break: break-word;
+}
+
+.citation-date {
+    font-size: 13px;
+    color: #888;
+}
+
+
+/* Researchers */
+
+.remain-content {
+    margin-left: 220px;
+    padding: 30px;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+}
+
+.researcher-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.researcher-table th,
+.researcher-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.researcher-table th {
+    background-color: #f0f0f0;
+    color: black;
+}
+
+.researcher-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.restatus-approved {
+    color: green;
+    font-weight: bold;
+}
+
+.restatus-pending {
+    color: orange;
+    font-weight: bold;
+}
+
+.reaction-btn {
+    padding: 6px 12px;
+    border: none;
+    background-color: #007acc;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.reaction-btn:hover {
+    background-color: #005c99;
+}
+
+
+/* Users */
+
+.usrmain-content {
+    margin-left: 150px;
+    padding: 30px;
+    /* width: 80%; */
+    background-color: #f4f4f4;
+    min-height: 100vh;
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.user-table th,
+.user-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.user-table th {
+    background-color: #f0f0f0;
+    color: black;
+}
+
+.user-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.usrstatus-active {
+    color: green;
+    font-weight: bold;
+}
+
+.usrstatus-inactive {
+    color: red;
+    font-weight: bold;
+}
+
+.role-researcher {
+    color: #007acc;
+}
+
+.role-student {
+    color: #8a2be2;
+}
+
+.usraction-btn {
+    padding: 6px 12px;
+    border: none;
+    background-color: #007acc;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.usraction-btn:hover {
+    background-color: #005c99;
+}

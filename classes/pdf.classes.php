@@ -1,7 +1,7 @@
 <?php
 class Pdf_classes extends dbh_Connection{
     public function setPdf($title, $abstract, $keywords, $filedofstudy, $coauthors, $folder, $r_id){
-        $sql = "INSERT INTO Paper (p_title, p_abstract, p_keywords, p_fieldofstudy, p_coauthors, p_pdf, r_id) VALUES (?, ?, ?, ?, ?, ?,?)";
+        $sql = "INSERT INTO Paper (p_title, p_abstract, p_keywords, p_fieldofstudy, p_coauthors, p_pdf,status, r_id) VALUES (?, ?, ?, ?, ?, ?,'pending',?)";
         $stmt = $this->connect()->prepare($sql);
         
         if(!$stmt->execute([$title, $abstract, $keywords, $filedofstudy, $coauthors, $folder, $r_id])){
