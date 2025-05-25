@@ -1,5 +1,10 @@
 <?php 
+require_once 'includes/dbh.inc.php';
 include 'ResearcherHeader.php';
+include 'classes/researcherdata.classes.php';
+$researcherData = new Researcherdata_classes();
+$researcherPapers = $researcherData->getPapers($researcherId);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,35 +39,37 @@ include 'ResearcherHeader.php';
         </thead>
         <tbody>
           <!-- Example row -->
-          <tr>
-            <td>Deep Learning for Healthcare</td>
-            <td>2025-05-18</td>
-            <td><span class="status pending">Pending</span></td>
-            <td class="action-buttons">
-              <button class="view-btn">View</button>
-              <button class="delete-btn">Delete</button>
+          <?php if (!empty($researcherPapers)): ?>
+            <?php foreach ($researcherPapers as $paper): ?>
+              <tr>
+                <td><?php echo $paper['p_title']; ?></td>
+                <!-- <td><?php echo $paper['date_submitted']; ?></td> -->
+                 <td>2025</td>
+                <td>
+                  <span class="status <?php echo $paper['status']; ?>">
+                    <?php echo $paper['status']; ?>
+                  </span>
+                </td>
+                <td class="action-buttons">
+                  
+                  <a href="PDF/<?php echo $paper['p_pdf'] ?>" target="_blank" class="view-btn">View</a>
+              
+                   <a href="" id="delete-btn" >Delete</a> 
+                </td>
+             
             </td>
-          </tr>
+              </tr>
+            <?php endforeach; ?>
+          <?php else: ?>
+            <tr>
+              <td colspan="4">No submissions found.</td>
+            </tr>
+          <?php endif; ?>
+          
 
-          <tr>
-            <td>AI in Agriculture</td>
-            <td>2025-04-28</td>
-            <td><span class="status approved">Approved</span></td>
-            <td class="action-buttons">
-              <button class="view-btn">View</button>
-              <button class="delete-btn">Delete</button>
-            </td>
-          </tr>
+          
 
-          <tr>
-            <td>Smart Traffic Management</td>
-            <td>2025-03-12</td>
-            <td><span class="status rejected">Rejected</span></td>
-            <td class="action-buttons">
-              <button class="view-btn">View</button>
-              <button class="delete-btn">Delete</button>
-            </td>
-          </tr>
+         
         </tbody>
       </table>
     </div>

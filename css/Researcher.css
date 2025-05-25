@@ -336,7 +336,7 @@ table th {
     color: white;
 }
 
-.delete-btn {
+#delete-btn {
     background-color: #e53935;
     color: white;
 }
@@ -345,7 +345,7 @@ table th {
     background-color: #0056b3;
 }
 
-.delete-btn:hover {
+#delete-btn:hover {
     background-color: #c62828;
 }
 
