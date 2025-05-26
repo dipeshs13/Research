@@ -44,6 +44,13 @@ if(isset($_SESSION['researcherId'])){
                     </a>
                 </li>
                 <li>
+                    <a href="ResearcherRejected.php">
+                        <span>
+                            Rejected Paper
+                        </span>
+                    </a>
+                </li>
+                <li>
                     <a href="ResearcherCitations.php">
                         <span>
                             Citations

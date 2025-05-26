@@ -14,7 +14,13 @@
 </head>
 <body>
 
-<?php include 'adminheader.php' ?>
+<?php 
+require_once '../includes/dbh.inc.php';
+include 'paperdata.classes.php';
+$Paperdata = new Paperdata_classes();
+$Researchers = $Paperdata->getResearcher(); // Fetch all researchers
+include 'adminheader.php';
+ ?>
 
   <!-- Main Content -->
   <div class="remain-content">
@@ -26,22 +32,27 @@
           <th>Researcher Name</th>
           <th>Email</th>
           <th>Total Submissions</th>
-          <th>Status</th>
-          <th>Actions</th>
+          
         </tr>
       </thead>
       <tbody>
         <!-- Sample Data Rows -->
+          <?php foreach($Researchers as $Researcher):?>
         <tr>
-          <td>Anish Sharma</td>
-          <td>anish@example.com</td>
-          <td>4</td>
-          <td><span class="restatus-approved">Active</span></td>
-          <td>
+          <td><?php echo $Researcher['r_fullname'];?></td>
+          <td><?php echo $Researcher['r_email'];?></td>
+          <?php
+              $rid = $Researcher['r_id'];
+              $TotalSubmission = $Paperdata->TotalSubmittedPapers($rid); // Assume this returns an associative array
+              echo '<td>' . $TotalSubmission . '</td>';
+              ?>
+          
+          <!-- <td><span class="restatus-approved">Active</span></td> -->
+          <!-- <td>
             <a href="ViewResearcher.php?id=1" class="reaction-btn">View</a>
-          </td>
+          </td> -->
         </tr>
-        
+        <?php endforeach; ?>
         
       </tbody>
     </table>

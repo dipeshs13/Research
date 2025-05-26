@@ -51,8 +51,8 @@ if (isset($_GET['status']) && isset($_GET['paper_id'])) {
             <?php foreach ($researcherPapers as $paper): ?>
               <tr>
                 <td><?php echo $paper['p_title']; ?></td>
-                <!-- <td><?php echo $paper['date_submitted']; ?></td> -->
-                <td>2025</td>
+                <td><?php echo $paper['Timestamp']; ?></td>
+                <!-- <td>2025</td> -->
                 <td>
                   <span class="status <?php echo $paper['status']; ?>">
                     <?php echo $paper['status']; ?>

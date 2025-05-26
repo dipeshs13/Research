@@ -13,6 +13,10 @@
 <body>
 
   <?php
+  require_once '../includes/dbh.inc.php';
+  include 'paperdata.classes.php';
+  $Paperdata = new Paperdata_classes();
+  $AllPapers = $Paperdata->SubmittedPapers();
 include 'adminheader.php';
 
 ?>
@@ -34,14 +38,21 @@ include 'adminheader.php';
         </thead>
         <tbody>
           <!-- Replace below with PHP loop -->
+           <?php foreach ($AllPapers as $paper): ?>
           <tr>
-            <td class="allpaper-content">AI in Education</td>
-            <td class="allpaper-content">John Sharma</td>
+            <td class="allpaper-content"><?php echo $paper['p_title']; ?></td>
+            <?php
+                            $rid = $paper['r_id'];
+                            $ResearcherInfo = $Paperdata->researcherDetails($rid); // Assume this returns an associative array
+                            echo '<td class="allpaper-content">' . $ResearcherInfo['r_fullname'] . '</td>';
+                            ?>
             <td class="allpaper-content"><span class="status-approved">Approved</span></td>
-            <td class="allpaper-content">2025-05-20</td>
-            <td class="allpaper-content"><a href="../PDF/AI_Education.pdf" target="_blank" class="allbtn-view">View</a></td>
+            <td class="allpaper-content"><?php echo $paper['Timestamp']; ?></td>
+            <td class="allpaper-content">
+              <a href="../PDF/<?php echo $paper['p_pdf'] ?>" target="_blank" class="allbtn-view">View</a>
+            </td>
           </tr>
-          
+          <?php endforeach; ?>
           <!-- End loop -->
         </tbody>
       </table>

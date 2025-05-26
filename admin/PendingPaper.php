@@ -57,7 +57,8 @@
                             echo '<td class="paper-desc">' . $ResearcherInfo['r_fullname'] . '</td>';
                             ?>
                             <!-- <td class="paper-desc"><?php echo $paper['p_submitted_on']; ?></td> -->
-                            <td>2025-05-24</td>
+                            <!-- <td>2025-05-24</td> -->
+                            <td class="paper-desc"><?php echo $paper['Timestamp']; ?></td>
                             <td class="paper-desc">
                                 <a href="../PDF/<?php echo $paper['p_pdf'] ?>" target="_blank" class="btn btn-view">View</a>
                             </td>

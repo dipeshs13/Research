@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Admin Dashboard</title>
   <link rel="stylesheet" href="../css/admin.css">
 </head>
+
 <body>
 
-<?php
-require_once '../includes/dbh.inc.php';
+  <?php
+  require_once '../includes/dbh.inc.php';
   include 'adminheader.php';
   include 'paperdata.classes.php';
   $Paperdata = new Paperdata_classes();
@@ -17,7 +19,8 @@ require_once '../includes/dbh.inc.php';
   $TotalResearchers = $Paperdata->TotalResearcher();
   $TotalPendingPapers = $Paperdata->TotalPending();
   $TotalApprovedPapers = $Paperdata->TotalApproved();
-?>
+  $PaperDetails = $Paperdata->getPapers(); // Fetch all papers for recent submissions
+  ?>
   <!-- Main Content -->
   <div class="dashboardmain-content">
     <div class="dashboard-header">Welcome, Admin</div>
@@ -55,24 +58,21 @@ require_once '../includes/dbh.inc.php';
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>AI in Agriculture</td>
-            <td>John Doe</td>
-            <td>Pending</td>
-            <td>2025-05-24</td>
-          </tr>
-          <tr>
-            <td>Quantum Computing Basics</td>
-            <td>Jane Smith</td>
-            <td>Approved</td>
-            <td>2025-05-20</td>
-          </tr>
-          <tr>
-            <td>Cybersecurity Trends</td>
-            <td>Mike Johnson</td>
-            <td>Pending</td>
-            <td>2025-05-18</td>
-          </tr>
+          <?php foreach ($PaperDetails as $Paper): ?>
+            <tr>
+              <td><?php echo $Paper['p_title']; ?></td>
+              <?php
+              $rid = $Paper['r_id'];
+              $ResearcherInfo = $Paperdata->researcherDetails($rid); // Assume this returns an associative array
+              echo '<td>' . $ResearcherInfo['r_fullname'] . '</td>';
+              ?>
+             <!-- Replace with dynamic researcher name if needed -->
+              <td><?php echo $Paper['status']; ?></td>
+              <td><?php echo $Paper['Timestamp']; ?></td>
+            </tr>
+          <?php endforeach; ?>
+
+
         </tbody>
       </table>
     </div>
@@ -80,4 +80,5 @@ require_once '../includes/dbh.inc.php';
   </div>
 
 </body>
+
 </html>

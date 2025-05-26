@@ -14,7 +14,13 @@
 <body>
 
 
-<?php include 'adminheader.php'; ?>
+<?php
+require_once '../includes/dbh.inc.php';
+include 'paperdata.classes.php';
+$Paperdata = new Paperdata_classes();
+$Users = $Paperdata->getUser(); // Fetch all users
+ include 'adminheader.php';
+  ?>
   <!-- Main Content -->
   <div class="usrmain-content">
     <div class="page-title">Manage Users</div>
@@ -22,23 +28,24 @@
     <table class="user-table">
       <thead>
         <tr>
-          <th>Full Name</th>
+          <th>First Name</th>
+          <th>Last Name</th>
           <th>Email</th>
-          <th>Role</th>
-          <th>Status</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         <!-- Example user rows -->
+         <?php foreach($Users as $User):?>
         <tr>
-          <td>Prakash KC</td>
-          <td>prakash@example.com</td>
-          <td><span class="role-researcher">Researcher</span></td>
-          <td><span class="usrstatus-active">Active</span></td>
-          <td><a href="ViewUser.php?id=1" class="usraction-btn">View</a></td>
+          <td><?php echo $User['u_firstname'] ?></td>
+          <td><?php echo $User['u_lastname'] ?></td>
+          <td><?php echo $User['u_email'] ?></td>
+          <!-- <td><span class="role-researcher">Researcher</span></td> -->
+          <!-- <td><a href="ViewUser.php?id=1" class="usraction-btn">View</a></td> -->
         </tr>
         
+        <?php endforeach; ?>
       </tbody>
     </table>
   </div>

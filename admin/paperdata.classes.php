@@ -57,6 +57,37 @@ class Paperdata_classes extends dbh_Connection {
         }
         $stmt = null;
     }
+    public function getPapers(){
+        $sql = "SELECT * FROM Paper";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function SubmittedPapers(){
+        $sql = "SELECT * FROM Paper where status = 'approved'";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function getResearcher(){
+        $sql = "SELECT * FROM Researcher";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function TotalSubmittedPapers($researcherId) {
+        $sql = "SELECT COUNT(*) FROM Paper WHERE r_id = ? AND status = 'approved'";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$researcherId]);
+        $result = $stmt->fetchColumn();
+        return $result;
+    }
+    public function getUser() {
+        $sql = "SELECT * FROM Users";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 
 
