@@ -64,7 +64,7 @@
                             <td class="action-btns paper-desc">
                                 <a href="PendingPaper.php?status=approved&paper_id=<?php echo $paper['p_id']; ?>"
                                     class="btn btn-approve">Approve</a>
-                                <a href="PendingPaper.php?statys=reject&paper_id=<?php echo $paper['p_id']; ?>"
+                                <a href="PendingPaper.php?status=reject&paper_id=<?php echo $paper['p_id']; ?>"
                                     class="btn btn-reject">Reject</a>
                             </td>
                         </tr>

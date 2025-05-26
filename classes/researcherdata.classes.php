@@ -21,6 +21,12 @@ class Researcherdata_classes extends dbh_Connection{
         $stmt->execute([$r_id]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function deletePaper($paperId) {
+        $sql = "DELETE FROM Paper WHERE p_id = ?";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$paperId]);
+        return $stmt->rowCount() > 0; // Returns true if a row was deleted
+    }
 }
 
 
