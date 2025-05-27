@@ -39,6 +39,13 @@ class Researcherdata_classes extends dbh_Connection{
         $stmt->execute([$researcherId]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    public function getRecentActivities($researcherId) {
+    $sql = "SELECT activity FROM ActivityLog WHERE researcher_id = ? ORDER BY created_at DESC LIMIT 5";
+    $stmt = $this->connect()->prepare($sql);
+    $stmt->execute([$researcherId]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 }
 
 

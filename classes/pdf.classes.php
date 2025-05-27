@@ -9,6 +9,7 @@ class Pdf_classes extends dbh_Connection{
             header("location: ../ResearcherUpload.php?error=stmtfailed");
             exit();
         }
+                $this->logActivity($r_id, "You uploaded a new paper titled '$title' - Pending");
         $stmt = null;
     }
     //  Function to check for duplicate paper by same researcher
@@ -30,6 +31,12 @@ class Pdf_classes extends dbh_Connection{
             $result = false; // Duplicate exists
         }
         return $result; // returns true if duplicate exists
+    }
+
+       private function logActivity($researcherId, $activity) {
+        $sql = "INSERT INTO ActivityLog (researcher_id, activity) VALUES (?, ?)";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->execute([$researcherId, $activity]);
     }
    
 }
