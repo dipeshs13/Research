@@ -2,7 +2,7 @@
 session_start();
     class Login extends dbh_Connection {
         public function getUser($email, $password){
-            $query = 'SELECT * FROM Users WHERE u_email = ?';
+            $query = 'SELECT * FROM users WHERE u_email = ?';
             $stmt = $this->connect()->prepare($query);
             
             if(!$stmt->execute([$email])){

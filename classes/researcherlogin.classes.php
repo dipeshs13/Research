@@ -2,7 +2,7 @@
 session_start();
 class Researcherlogin extends dbh_Connection {
     public function getResearcher($email, $password){
-        $query = 'SELECT * FROM Researcher WHERE r_email = ?';
+        $query = 'SELECT * FROM researcher WHERE r_email = ?';
         $stmt = $this->connect()->prepare($query);
         
         if(!$stmt->execute([$email])){

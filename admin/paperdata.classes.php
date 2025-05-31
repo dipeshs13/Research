@@ -1,53 +1,53 @@
 <?php
-class Paperdata_classes extends dbh_Connection {
-    public function TotalPaper(){
-        $sql = "SELECT COUNT(*) FROM Paper";
+class paperdata_classes extends dbh_Connection {
+    public function Totalpaper(){
+        $sql = "SELECT COUNT(*) FROM paper";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchColumn();
         return $result;
     }
     public function TotalResearcher(){
-        $sql = "SELECT COUNT(*) FROM Researcher";
+        $sql = "SELECT COUNT(*) FROM researcher";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchColumn();
         return $result;
     }
     public function TotalPending(){
-        $sql = "SELECT COUNT(*) FROM Paper WHERE status = 'pending'";
+        $sql = "SELECT COUNT(*) FROM paper WHERE status = 'pending'";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchColumn();
         return $result;
     }
     public function TotalApproved(){
-        $sql = "SELECT COUNT(*) FROM Paper WHERE status = 'approved'";
+        $sql = "SELECT COUNT(*) FROM paper WHERE status = 'approved'";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchColumn();
         return $result;
     }
-    public function getPendingPapers(){
-        $sql = "SELECT * FROM Paper WHERE status = 'pending'";
+    public function getPendingpapers(){
+        $sql = "SELECT * FROM paper WHERE status = 'pending'";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function getApprovedPapers(){
-        $sql = "SELECT * FROM Paper WHERE status = 'approved'";
+    public function getApprovedpapers(){
+        $sql = "SELECT * FROM paper WHERE status = 'approved'";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     public function researcherDetails($researcherId) {
-        $sql = "SELECT * FROM Researcher WHERE r_id = ?";
+        $sql = "SELECT * FROM researcher WHERE r_id = ?";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$researcherId]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-    public function updatePaperStatus($paperId, $status) {
-        $sql = "UPDATE Paper SET status = ? WHERE p_id = ?";
+    public function updatepaperStatus($paperId, $status) {
+        $sql = "UPDATE paper SET status = ? WHERE p_id = ?";
         $stmt = $this->connect()->prepare($sql);
         
         if(!$stmt->execute([$status, $paperId])){
@@ -57,33 +57,33 @@ class Paperdata_classes extends dbh_Connection {
         }
         $stmt = null;
     }
-    public function getPapers(){
-        $sql = "SELECT * FROM Paper";
+    public function getpapers(){
+        $sql = "SELECT * FROM paper";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function SubmittedPapers(){
-        $sql = "SELECT * FROM Paper where status = 'approved'";
+    public function Submittedpapers(){
+        $sql = "SELECT * FROM paper where status = 'approved'";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     public function getResearcher(){
-        $sql = "SELECT * FROM Researcher";
+        $sql = "SELECT * FROM researcher";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function TotalSubmittedPapers($researcherId) {
-        $sql = "SELECT COUNT(*) FROM Paper WHERE r_id = ? AND status = 'approved'";
+    public function TotalSubmittedpapers($researcherId) {
+        $sql = "SELECT COUNT(*) FROM paper WHERE r_id = ? AND status = 'approved'";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$researcherId]);
         $result = $stmt->fetchColumn();
         return $result;
     }
     public function getUser() {
-        $sql = "SELECT * FROM Users";
+        $sql = "SELECT * FROM users";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
