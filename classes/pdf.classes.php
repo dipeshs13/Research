@@ -1,46 +1,68 @@
 <?php
-class Pdf_classes extends dbh_Connection{
-    public function setPdf($title, $abstract, $keywords, $filedofstudy, $coauthors, $folder, $r_id){
-        $sql = "INSERT INTO Paper (p_title, p_abstract, p_keywords, p_fieldofstudy, p_coauthors, p_pdf,status, r_id) VALUES (?, ?, ?, ?, ?, ?,'pending',?)";
-        $stmt = $this->connect()->prepare($sql);
-        
-        if(!$stmt->execute([$title, $abstract, $keywords, $filedofstudy, $coauthors, $folder, $r_id])){
+require_once 'Dbh.classes.php';
+
+class pdf extends Dbh {
+    private $title;
+    private $abstract;
+    private $keywords;
+    private $fieldofstudy;
+    private $coauthors;
+    private $pdf;
+    private $researcher_id;
+
+    public function __construct($title, $abstract, $keywords, $fieldofstudy, $coauthors, $pdf, $researcher_id) {
+        $this->title = $title;
+        $this->abstract = $abstract;
+        $this->keywords = $keywords;
+        $this->fieldofstudy = $fieldofstudy;
+        $this->coauthors = $coauthors;
+        $this->pdf = $pdf;
+        $this->researcher_id = $researcher_id;
+    }
+
+    protected function setPdf() {
+        $conn = $this->connect();
+        $stmt = $conn->prepare('INSERT INTO paper (p_title, p_abstract, p_keywords, p_fieldofstudy, p_coauthors, p_pdf, status, r_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+        $status = "pending";
+
+        if(!$stmt->execute([$this->title, $this->abstract, $this->keywords, $this->fieldofstudy, $this->coauthors, $this->pdf, $status, $this->researcher_id])) {
             $stmt = null;
             header("location: ../ResearcherUpload.php?error=stmtfailed");
             exit();
         }
-                $this->logActivity($r_id, "You uploaded a new paper titled '$title' - Pending");
+
+        // Get the inserted paper ID using PDO's lastInsertId()
+        $paperId = $conn->lastInsertId();
+
+        // Create inverted index
+        require_once 'InvertedIndex.classes.php';
+        $indexer = new InvertedIndex();
+        $indexer->indexDocument($paperId, $this->title, $this->abstract, $this->keywords);
+
         $stmt = null;
     }
-    //  Function to check for duplicate paper by same researcher
-    public function isDuplicatePaper($abstract, $keywords, $filedofstudy, $coauthors, $r_id) {
-        $sql = "SELECT COUNT(*) FROM Paper 
+
+    public function isDuplicatePaper($abstract, $keywords, $fieldofstudy, $coauthors, $r_id) {
+        $conn = $this->connect();
+        $stmt = $conn->prepare("SELECT COUNT(*) FROM paper 
                 WHERE p_abstract = ? 
                 AND p_keywords = ? 
                 AND p_fieldofstudy = ? 
                 AND p_coauthors = ?
-                AND r_id = ?";
+                AND r_id = ?");
                 
-        $stmt = $this->connect()->prepare($sql);
-        $stmt->execute([$abstract, $keywords, $filedofstudy, $coauthors, $r_id]);
-
+        $stmt->execute([$abstract, $keywords, $fieldofstudy, $coauthors, $r_id]);
         $count = $stmt->fetchColumn();
         $stmt = null;
-        $result = true;
-        if($count > 0) {
-            $result = false; // Duplicate exists
-        }
-        return $result; // returns true if duplicate exists
+        
+        return $count == 0; // returns true if no duplicate exists
     }
 
-       private function logActivity($researcherId, $activity) {
+    private function logActivity($researcherId, $activity) {
         $sql = "INSERT INTO ActivityLog (researcher_id, activity) VALUES (?, ?)";
         $stmt = $this->connect()->prepare($sql);
         $stmt->execute([$researcherId, $activity]);
     }
-   
 }
-
-
 
 ?>
