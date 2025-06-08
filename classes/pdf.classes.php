@@ -22,24 +22,37 @@ class pdf extends Dbh {
 
     protected function setPdf() {
         $conn = $this->connect();
-        $stmt = $conn->prepare('INSERT INTO paper (p_title, p_abstract, p_keywords, p_fieldofstudy, p_coauthors, p_pdf, status, r_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
-        $status = "pending";
+    $status = "pending";
 
-        if(!$stmt->execute([$this->title, $this->abstract, $this->keywords, $this->fieldofstudy, $this->coauthors, $this->pdf, $status, $this->researcher_id])) {
-            $stmt = null;
-            header("location: ../ResearcherUpload.php?error=stmtfailed");
-            exit();
-        }
-
-        // Get the inserted paper ID using PDO's lastInsertId()
-        $paperId = $conn->lastInsertId();
-
-        // Create inverted index
-        require_once 'InvertedIndex.classes.php';
-        $indexer = new InvertedIndex();
-        $indexer->indexDocument($paperId, $this->title, $this->abstract, $this->keywords);
-
+    // Temporarily insert without citation_code to get ID
+    $stmt = $conn->prepare('INSERT INTO paper (p_title, p_abstract, p_keywords, p_fieldofstudy, p_coauthors, p_pdf, status, r_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+    if (!$stmt->execute([$this->title, $this->abstract, $this->keywords, $this->fieldofstudy, $this->coauthors, $this->pdf, $status, $this->researcher_id])) {
         $stmt = null;
+        header("location: ../ResearcherUpload.php?error=stmtfailed");
+        exit();
+    }
+
+    // Get inserted ID
+    $paperId = $conn->lastInsertId();
+
+    // Generate citation code, e.g., BCA2025-0001
+    $citationCode = "BCA2025-" . str_pad($paperId, 4, "0", STR_PAD_LEFT);
+
+    // Update the citation_code
+    $updateStmt = $conn->prepare('UPDATE paper SET citation_code = ? WHERE p_id = ?');
+    $updateStmt->execute([$citationCode, $paperId]);
+
+    // Indexing
+    require_once 'InvertedIndex.classes.php';
+    $indexer = new InvertedIndex();
+    $indexer->indexDocument($paperId, $this->title, $this->abstract, $this->keywords);
+
+    // Log activity
+    $activityMessage = "You uploaded a new paper titled '{$this->title}' - Pending";
+    $this->logActivity($this->researcher_id, $activityMessage);
+
+    $stmt = null;
+    $updateStmt = null;
     }
 
     public function isDuplicatePaper($abstract, $keywords, $fieldofstudy, $coauthors, $r_id) {
@@ -59,10 +72,13 @@ class pdf extends Dbh {
     }
 
     private function logActivity($researcherId, $activity) {
-        $sql = "INSERT INTO ActivityLog (researcher_id, activity) VALUES (?, ?)";
-        $stmt = $this->connect()->prepare($sql);
-        $stmt->execute([$researcherId, $activity]);
+        $conn = $this->connect();
+        $sql = "INSERT INTO activitylog (researcher_id, activity) VALUES (?, ?)";
+        $stmt = $conn->prepare($sql);
+        if (!$stmt->execute([$researcherId, $activity])) {
+            // Handle error, e.g., log or throw exception
+            error_log("Failed to insert activity log: " . implode(" | ", $stmt->errorInfo()));
+        }
+        $stmt = null;
     }
 }
-
-?>
