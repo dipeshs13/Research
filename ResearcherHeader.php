@@ -71,13 +71,13 @@ if(isset($_SESSION['researcherId'])){
                         </span>
                     </a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="ResearcherReviews.php">
                         <span>
                             Reviews
                         </span>
                     </a>
-                </li>
+                </li> -->
     
                 <?php 
                 if($researcherId){

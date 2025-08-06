@@ -1,66 +1,87 @@
+<?php
+ require_once 'includes/dbh.inc.php';
+include 'ResearcherHeader.php';
+  include 'classes/researcherdata.classes.php';
+
+
+$researcherId = $_SESSION['researcherId'];
+
+$profile = new Researcherdata_classes();
+$researcher = $profile->researcherDetails($researcherId);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Researcher Profile</title>
   <link rel="stylesheet" href="css/Researcher.css" />
-
+  <style>
+    .profile-content {
+      padding: 30px;
+    }
+    .profile-header {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    .profile-container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      max-width: 700px;
+      margin: auto;
+    }
+    .profile-info {
+      margin-bottom: 15px;
+    }
+    .profile-info label {
+      font-weight: bold;
+    }
+  </style>
 </head>
-
 <body>
 
+<div class="profile-content">
+  <div class="profile-header">My Profile</div>
 
-  <?php
-  include 'ResearcherHeader.php';
-  ?>
-  <div class="profile-content">
-    <div class="profile-header">My Profile</div>
+  <div class="profile-container">
+    <div class="profile-info">
+      <label>Full Name:</label>
+      <div><?= htmlspecialchars($researcher['r_fullname']) ?></div>
+    </div>
 
-    <div class="profile-container">
-      <div class="profile-pic">
-        <img src="images/default-profile.png" alt="Profile Picture" />
-      </div>
+    <div class="profile-info">
+      <label>Email:</label>
+      <div><?= htmlspecialchars($researcher['r_email']) ?></div>
+    </div>
 
-      <form class="profile-form">
-        <label for="name">Full Name</label>
-        <input type="text" id="name" value="Dr. Jane Doe" />
+    <div class="profile-info">
+      <label>Institution:</label>
+      <div><?= htmlspecialchars($researcher['r_institution']) ?></div>
+    </div>
 
-        <label for="email">Email</label>
-        <input type="email" id="email" value="jane@example.com" />
+    <div class="profile-info">
+      <label>Field of Research:</label>
+      <div><?= htmlspecialchars($researcher['r_field']) ?></div>
+    </div>
+    <div class="profile-info">
+      <label>Country:</label>
+      <div><?= htmlspecialchars($researcher['r_country']) ?></div>
+    </div>
+    <div class="profile-info">
+      <label>Interest:</label>
+      <div><?= htmlspecialchars($researcher['r_interest']) ?></div>
+    </div>
 
-        <label for="institution">Institution</label>
-        <input type="text" id="institution" value="Oxford University" />
-
-        <label for="field">Field of Research</label>
-        <input type="text" id="field" value="Artificial Intelligence" />
-
-        <label for="bio">Bio / About Me</label>
-        <textarea id="bio">Researcher in AI with a focus on NLP and Machine Learning applications.</textarea>
-
-        
-
-        <button type="submit" class="save-btn">Save Changes</button>
-      </form>
-
-      <div class="change-password">
-        <h3>Change Password</h3>
-        <form class="profile-form">
-          <label for="current-password">Current Password</label>
-          <input type="password" id="current-password" />
-
-          <label for="new-password">New Password</label>
-          <input type="password" id="new-password" />
-
-          <label for="confirm-password">Confirm New Password</label>
-          <input type="password" id="confirm-password" />
-
-          <button type="submit" class="save-btn">Update Password</button>
-        </form>
-      </div>
+    <div class="profile-info">
+      <label>Bio / About Me:</label>
+      <div><?= nl2br(htmlspecialchars($researcher['r_biography'])) ?></div>
     </div>
   </div>
-</body>
+</div>
 
+</body>
 </html>
