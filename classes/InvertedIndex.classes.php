@@ -7,11 +7,26 @@ class InvertedIndex extends Dbh {
     public function __construct() {
         $this->conn = $this->connect();
     }
+    private function removeSpecialCharacters($text) {
+    $cleaned = '';
+    for ($i = 0; $i < strlen($text); $i++) {
+        $char = $text[$i];
+        if (
+            ($char >= 'a' && $char <= 'z') ||
+            ($char >= '0' && $char <= '9') ||
+            $char === ' '
+        ) {
+            $cleaned .= $char;
+        }
+    }
+    return $cleaned;
+}
+
     
     private function tokenize($text) {
         // Convert to lowercase and remove special characters
         $text = strtolower($text);
-        $text = preg_replace('/[^a-z0-9\s]/', '', $text);
+        $text = $this->removeSpecialCharacters($text);
         
         // Split into words and remove stopwords
         $words = explode(' ', $text);
@@ -21,6 +36,7 @@ class InvertedIndex extends Dbh {
         return array_values(array_diff($words, $stopwords));
     }
     
+
     public function indexDocument($paperId, $title, $abstract, $keywords) {
         // Combine all text fields
         $fullText = $title . ' ' . $abstract . ' ' . $keywords;
@@ -106,3 +122,4 @@ class InvertedIndex extends Dbh {
         return $stmt;
     }
 } 
+

@@ -1,15 +1,17 @@
-<?php 
+<?php
 include 'ResearcherHeader.php';
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Upload Research Paper</title>
   <link rel="stylesheet" href="css/Researcher.css" />
 </head>
+
 <body>
 
   <div class="upload-content">
@@ -26,7 +28,7 @@ include 'ResearcherHeader.php';
         <label for="keywords">Keywords </label>
         <input type="text" id="keywords" name="keywords" required />
 
-        <label for="fieldofstudy">Field of Study</label> 
+        <label for="fieldofstudy">Field of Study</label>
         <input type="text" id="fieldofstudy" name="fieldofstudy" placeholder="Enter Field of Study" />
 
         <label for="coauthors">Co-Author(s) Name(s)</label>
@@ -35,9 +37,18 @@ include 'ResearcherHeader.php';
         <label for="pdf">Upload PDF</label>
         <input type="file" id="pdf" name="pdf" accept="application/pdf" required />
 
+        <label for="references">References (one per line)</label>
+        <small style="color: gray;">
+          Please include the citation code (e.g., BCA2025-0003) if you are citing a paper from this system.
+        </small>
+        <textarea id="references" name="references" rows="5" placeholder="Example:
+Sharma, A. (2024). Machine Learning in Agriculture. BCA2025-0003
+John, D. (2022). AI in Health."></textarea>
+
         <button type="submit" class="upload-btn">Submit Paper</button>
       </form>
     </div>
   </div>
 </body>
+
 </html>

@@ -9,6 +9,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $fieldofstudy = $_POST['fieldofstudy'];
     $coauthors = $_POST['coauthors'];
     $researcher_id = $_POST['researcher_id'];
+    $references = $_POST['references'];
 
     // Handle file upload
     $filename = $_FILES['pdf']['name'];
@@ -28,7 +29,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Create PDF controller and upload
-    $pdf = new pdfcontro($title, $abstract, $keywords, $fieldofstudy, $coauthors, $folder, $researcher_id);
+    $pdf = new pdfcontro($title, $abstract, $keywords, $fieldofstudy, $coauthors, $folder, $researcher_id, $references);
     $pdf->uploadPdf();
     
     header("location: ../ResearcherUpload.php?upload=success");

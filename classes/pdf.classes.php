@@ -53,6 +53,8 @@ class pdf extends Dbh {
 
     $stmt = null;
     $updateStmt = null;
+
+    return $paperId; // Return the paper ID for further processing
     }
 
     public function isDuplicatePaper($abstract, $keywords, $fieldofstudy, $coauthors, $r_id) {

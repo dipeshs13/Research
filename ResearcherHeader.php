@@ -58,6 +58,13 @@ if(isset($_SESSION['researcherId'])){
                     </a>
                 </li>
                 <li>
+                    <a href="ViewCitingPapers.php">
+                        <span>
+                            View Citing Papers
+                        </span>
+                    </a>
+                </li>
+                <li>
                     <a href="ResearcherReviews.php">
                         <span>
                             Reviews
