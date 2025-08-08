@@ -13,22 +13,42 @@
     <?php
     require_once '../includes/dbh.inc.php';
     include 'paperdata.classes.php';
+    require_once '../classes/PaperRejection.php';
     include 'adminheader.php';
+
     $Paperdata = new Paperdata_classes();
-    $PendingPapers = $Paperdata->getPendingPapers();
 
+    // Handle POST request for rejection
+    
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['status']) && $_POST['status'] === 'reject') {
+        $paperId = (int) $_POST['paper_id'];
+        $reason = trim($_POST['reason']);
+        $adminId = 1; // TODO: get logged-in admin id dynamically
+    
+        // Save rejection reason
+        $rejection = new PaperRejection();
+        $rejection->saveRejection($paperId, $adminId, $reason);
 
+        // Update paper status
+        $Paperdata->updatePaperStatus($paperId, 'rejected');
+
+        header("Location: PendingPaper.php");
+        exit();
+    }
+
+    // Handle GET request for approval
     if (isset($_GET['status']) && isset($_GET['paper_id'])) {
         $action = $_GET['status'];
         $paperId = (int) $_GET['paper_id'];
 
         if ($action === 'approved') {
             $Paperdata->updatePaperStatus($paperId, 'approved');
-        } elseif ($action === 'reject') {
-            $Paperdata->updatePaperStatus($paperId, 'rejected');
         }
     }
+
+    $PendingPapers = $Paperdata->getPendingPapers();
     ?>
+
 
 
     <!-- Main Content -->
@@ -65,9 +85,23 @@
                             <td class="action-btns paper-desc">
                                 <a href="PendingPaper.php?status=approved&paper_id=<?php echo $paper['p_id']; ?>"
                                     class="btn btn-approve">Approve</a>
-                                <a href="PendingPaper.php?status=reject&paper_id=<?php echo $paper['p_id']; ?>"
-                                    class="btn btn-reject">Reject</a>
+
+                                <!-- Reject button triggers form -->
+                                <button type="button" class="btn btn-reject"
+                                    onclick="showRejectForm(<?php echo $paper['p_id']; ?>)">
+                                    Reject
+                                </button>
+
+                                <!-- Hidden reject form -->
+                                <form method="POST" action="PendingPaper.php" class="reject-form"
+                                    id="reject-form-<?php echo $paper['p_id']; ?>" style="display:none;">
+                                    <textarea name="reason" placeholder="Enter rejection reason..." required></textarea>
+                                    <input type="hidden" name="paper_id" value="<?php echo $paper['p_id']; ?>">
+                                    <input type="hidden" name="status" value="reject">
+                                    <button type="submit" class="btn btn-reject-confirm">Submit</button>
+                                </form>
                             </td>
+
                         </tr>
                     <?php endforeach; ?>
 
@@ -77,6 +111,11 @@
             </table>
         </div>
     </div>
+    <script>
+        function showRejectForm(paperId) {
+            document.getElementById('reject-form-' + paperId).style.display = 'block';
+        }
+    </script>
 
 </body>
 

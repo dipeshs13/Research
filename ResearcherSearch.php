@@ -143,9 +143,9 @@ if (isset($_GET['query']) && !empty($_GET['query'])) {
                     <?php foreach ($searchResults as $paper): ?>
                         <div class="card">
                             <h5 class="card-title"><?php echo htmlspecialchars($paper['p_title']); ?></h5>
-                            <h6 class="card-subtitle">
+                            <!-- <h6 class="card-subtitle">
                                 Relevance Score: <?php echo number_format($paper['relevance_score'], 4); ?>
-                            </h6>
+                            </h6> -->
                             <p class="card-text">
                                 <strong>Abstract:</strong><br>
                                 <?php echo htmlspecialchars(substr($paper['p_abstract'], 0, 300)) . '...'; ?>

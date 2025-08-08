@@ -45,6 +45,20 @@ class Researcherdata_classes extends dbh_Connection{
     $stmt->execute([$researcherId]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+    public function Rejected_Papers($researcherId) {
+    $sql = "
+        SELECT p.*, pr.reason
+        FROM paper p
+        LEFT JOIN paper_rejections pr ON p.p_id = pr.paper_id
+        WHERE p.r_id = ? AND p.status = 'rejected'
+        ORDER BY p.Timestamp DESC
+    ";
+
+    $stmt = $this->connect()->prepare($sql);
+    $stmt->execute([$researcherId]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 
 }
 

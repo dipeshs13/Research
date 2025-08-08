@@ -7,6 +7,7 @@
     <title>Rejected Papers</title>
     <link rel="stylesheet" href="css/Researcher.css">
     <style>
+        /* your styles here */
         .rejmain-content {
             margin-left: 220px;
             padding: 30px;
@@ -14,55 +15,7 @@
             min-height: 100vh;
         }
 
-        .page-title {
-            font-size: 26px;
-            margin-bottom: 20px;
-        }
-
-        .rejected-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .rejected-table th,
-        .rejected-table td {
-            padding: 14px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .rejected-table th {
-            background-color: #a83232;
-            color: white;
-        }
-
-        .rejected-table tr:hover {
-            background-color: #fbe9e9;
-        }
-
-        .status-rejected {
-            color: red;
-            font-weight: bold;
-        }
-
-        .view-btn {
-            padding: 6px 12px;
-            border: none;
-            background-color: #a83232;
-            color: white;
-            cursor: pointer;
-            border-radius: 4px;
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        .view-btn:hover {
-            background-color: #821f1f;
-        }
+        /* ... rest of your CSS ... */
     </style>
 </head>
 
@@ -70,14 +23,20 @@
 
     <?php
     require_once 'includes/dbh.inc.php';
-    include 'ResearcherHeader.php';
+    include 'ResearcherHeader.php';  // This already contains session check, so you can remove the session check above if you want
     include 'classes/researcherdata.classes.php';
+
+    if (!isset($_SESSION['researcherId'])) {
+        header('location: ResearcherLogin.php');
+        exit();
+    }
+    $researcherId = $_SESSION['researcherId'];
+    $researcherFullname = $_SESSION['researcherfullname'];
+
     $researcherData = new Researcherdata_classes();
-    $rejectedPapers = $researcherData->RejectedPapers($researcherId); // Fetch rejected papers for the researcher
-    
+    $rejectedPapers = $researcherData->Rejected_Papers($researcherId);
     ?>
 
-    <!-- Main Content -->
     <div class="rejmain-content">
         <div class="page-title">Rejected Research Papers</div>
 
@@ -88,25 +47,29 @@
                     <th>Submitted By</th>
                     <th>Submitted On</th>
                     <th>Status</th>
-                    <th>Reason</th>
+                    <th>Rejection Reason</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Example row -->
-                <?php foreach ($rejectedPapers as $paper): ?>
+                <?php if (!empty($rejectedPapers)): ?>
+                    <?php foreach ($rejectedPapers as $paper): ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($paper['p_title']); ?></td>
+                            <?php
+                            $rid = $paper['r_id'];
+                            $ResearcherInfo = $researcherData->researcherDetails($rid);
+                            echo '<td>' . htmlspecialchars($ResearcherInfo['r_fullname']) . '</td>';
+                            ?>
+                            <td><?php echo htmlspecialchars($paper['Timestamp']); ?></td>
+                            <td><span class="status-rejected"><?php echo htmlspecialchars($paper['status']); ?></span></td>
+                            <td><?php echo htmlspecialchars($paper['reason'] ?? 'No reason provided'); ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
                     <tr>
-                        <td><?php echo $paper['p_title']; ?></td>
-                        <?php
-                        $rid = $paper['r_id'];
-                        $ResearcherInfo = $researcherData->researcherDetails($rid); // Assume this returns an associative array
-                        echo '<td>' . $ResearcherInfo['r_fullname'] . '</td>';
-                        ?>
-                        <td><?php echo $paper['Timestamp']; ?></td>
-                        <td><span class="status-rejected"><?php echo $paper['status']; ?></span></td>
-                        <td><a href="ViewPaper.php?id=1" class="view-btn">View</a></td>
+                        <td colspan="5" style="text-align:center; padding: 20px;">No rejected papers found.</td>
                     </tr>
-                <?php endforeach; ?>
-                <!-- Add dynamic PHP rows here -->
+                <?php endif; ?>
             </tbody>
         </table>
     </div>
