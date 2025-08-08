@@ -38,13 +38,13 @@ if (!isset($_SESSION['adminid'])) {
                 </a>
             </li>
 
-            <li>
+            <!-- <li>
                 <a href="AllReviews.php">
                     <span>
                         All Reviews
                     </span>
                 </a>
-            </li>
+            </li> -->
             <li>
                 <a href="AllCitations.php">
                     <span>

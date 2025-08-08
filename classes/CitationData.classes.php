@@ -62,5 +62,18 @@ public function getPaperById($paperId) {
     $stmt->execute([$paperId]);
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
+public function getAllReferencesWithResearcher() {
+    $sql = "
+        SELECT pr.*, p.p_title, r.r_fullname
+        FROM paper_references pr
+        JOIN paper p ON pr.paper_id = p.p_id
+        JOIN researcher r ON p.r_id = r.r_id
+        ORDER BY pr.ref_id DESC
+    ";
+    $stmt = $this->connect()->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 
 }

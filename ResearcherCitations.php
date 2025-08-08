@@ -56,9 +56,9 @@ $papers = $citation->getPapersWithCitations($researcherId);
     </table>
   </div>
 
-  <div class="chart-placeholder">
+  <!-- <div class="chart-placeholder">
     Citation trend graph (optional visualization)
-  </div>
+  </div> -->
 </div>
 
 </body>

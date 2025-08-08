@@ -54,10 +54,10 @@
     </div>
 
 
-    <div class="action-buttons">
+    <!-- <div class="action-buttons">
       <a href="#">Upload New Paper</a>
       <a href="#">View All Submissions</a>
-    </div>
+    </div> -->
   </div>
 </body>
 

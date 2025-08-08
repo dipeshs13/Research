@@ -38,7 +38,7 @@
             <th class="approved-paper-heading">Researcher</th>
             <th class="approved-paper-heading">Approved On</th>
             <th class="approved-paper-heading">File</th>
-            <th class="approved-paper-heading">Actions</th>
+            <!-- <th class="approved-paper-heading">Actions</th> -->
           </tr>
         </thead>
         <tbody>
@@ -57,10 +57,10 @@
               <td class="approved-paper-content">
                 <a href="../PDF/<?php echo $paper['p_pdf'] ?>" target="_blank" class="appbtn appbtn-view">View</a>
               </td>
-
+<!-- 
               <td class="appaction-btns approved-paper-content">
                 <button class="btn appbtn-revoke">Revoke</button>
-              </td>
+              </td> -->
 
             </tr>
           <?php endforeach; ?>
