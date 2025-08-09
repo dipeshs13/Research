@@ -32,6 +32,7 @@ include 'adminheader.php';
           <th>Researcher Name</th>
           <th>Email</th>
           <th>Total Submissions</th>
+          <th>Action</th>
           
         </tr>
       </thead>

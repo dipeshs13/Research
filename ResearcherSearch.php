@@ -156,6 +156,19 @@ if (isset($_GET['query']) && !empty($_GET['query'])) {
                             <p class="card-text">
                                 <strong>Field of Study:</strong> <?php echo htmlspecialchars($paper['p_fieldofstudy']); ?>
                             </p>
+                            <p class="card-text">
+                                <strong>Citation Code:</strong> <?php echo htmlspecialchars($paper['citation_code']); ?>
+                            </p>
+                            <p class="card-text">
+                                <strong>Researcher name:</strong> <?php echo htmlspecialchars($paper['r_fullname']); ?>
+                            </p>
+                            <p class="card-text">
+                                <strong>Institution:</strong> <?php echo htmlspecialchars($paper['r_institution']); ?>
+                            </p>
+                            <p class="card-text">
+                                <strong>Country:</strong> <?php echo htmlspecialchars($paper['r_country']); ?>
+                            </p>
+                            
                             <a href="<?php echo htmlspecialchars($paper['p_pdf']); ?>" class="btn-primary" target="_blank">
                                 View PDF
                             </a>

@@ -98,28 +98,42 @@ class InvertedIndex extends Dbh {
         }
     }
     
-    public function search($query) {
-        $tokens = $this->tokenize($query);
-        if (empty($tokens)) {
-            return $this->conn->query("SELECT * FROM paper WHERE 1=0"); // Return empty result set
-        }
-        
-        $placeholders = str_repeat('?,', count($tokens) - 1) . '?';
-        
-        // Build query for TF-IDF calculation
-        $sql = "SELECT p.*, 
-                SUM(i.tf * t.idf) as relevance_score 
-                FROM paper p 
-                INNER JOIN inverted_index i ON p.p_id = i.paper_id 
-                INNER JOIN terms t ON i.term_id = t.term_id 
-                WHERE t.term IN ($placeholders)
-                GROUP BY p.p_id 
-                ORDER BY relevance_score DESC";
-        
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute($tokens);
-        
-        return $stmt;
+
+  public function search($query) {
+    $tokens = $this->tokenize($query);
+    if (empty($tokens)) {
+        return $this->conn->query("SELECT * FROM paper WHERE 1=0"); // Return empty result set
     }
+    
+    $placeholders = str_repeat('?,', count($tokens) - 1) . '?';
+    
+    $sql = "SELECT p.*, 
+                   r.r_fullname, 
+                   r.r_email, 
+                   r.r_institution, 
+                   r.r_field, 
+                   r.r_country, 
+                   r.r_biography, 
+                   r.r_interest,
+                   SUM(i.tf * t.idf) AS relevance_score
+            FROM paper p
+            INNER JOIN inverted_index i ON p.p_id = i.paper_id
+            INNER JOIN terms t ON i.term_id = t.term_id
+            INNER JOIN researcher r ON p.r_id = r.r_id
+            WHERE t.term IN ($placeholders)
+              AND p.status = 'approved'
+            GROUP BY p.p_id
+            ORDER BY relevance_score DESC";
+    
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute($tokens);
+    
+    return $stmt;
+}
+
+
+
+
+
 } 
 

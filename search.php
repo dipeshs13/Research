@@ -2,17 +2,17 @@
 require_once 'includes/dbh.inc.php';
 require_once 'classes/InvertedIndex.classes.php';
 
-$searchResults = [];
-$searchPerformed = false;
+// $searchResults = [];
+// $searchPerformed = false;
 
-if (isset($_GET['query']) && !empty($_GET['query'])) {
-    $searchPerformed = true;
-    $query = $_GET['query'];
+// if (isset($_GET['query']) && !empty($_GET['query'])) {
+//     $searchPerformed = true;
+//     $query = $_GET['query'];
     
-    $indexer = new InvertedIndex();
-    $stmt = $indexer->search($query);
-    $searchResults = $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+//     $indexer = new InvertedIndex();
+//     $stmt = $indexer->search($query);
+//     $searchResults = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// }
 ?>
 <?php
 require_once 'includes/dbh.inc.php';
@@ -30,6 +30,8 @@ if (isset($_GET['query']) && !empty($_GET['query'])) {
     $indexer = new InvertedIndex();
     $stmt = $indexer->search($query);
     $searchResults = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    
 }
 ?>
 <!DOCTYPE html>
@@ -157,26 +159,15 @@ if (isset($_GET['query']) && !empty($_GET['query'])) {
                 <?php if (!empty($searchResults)): ?>
                     <h2>Search Results</h2>
                     <?php foreach ($searchResults as $paper): ?>
-                        <div class="card">
-                            <h5 class="card-title"><?php echo htmlspecialchars($paper['p_title']); ?></h5>
-                            <h6 class="card-subtitle">
-                                Relevance Score: <?php echo number_format($paper['relevance_score'], 4); ?>
-                            </h6>
-                            <p class="card-text">
-                                <strong>Abstract:</strong><br>
-                                <?php echo htmlspecialchars(substr($paper['p_abstract'], 0, 300)) . '...'; ?>
-                            </p>
-                            <p class="card-text">
-                                <strong>Keywords:</strong> <?php echo htmlspecialchars($paper['p_keywords']); ?>
-                            </p>
-                            <p class="card-text">
-                                <strong>Field of Study:</strong> <?php echo htmlspecialchars($paper['p_fieldofstudy']); ?>
-                            </p>
-                            <a href="<?php echo htmlspecialchars($paper['p_pdf']); ?>" class="btn-primary" target="_blank">
-                                View PDF
-                            </a>
-                        </div>
-                    <?php endforeach; ?>
+    <div class="card">
+        <h5 class="card-title"><?php echo htmlspecialchars($paper['p_title']); ?></h5>
+        <p class="card-text"><strong>Abstract:</strong><br><?php echo htmlspecialchars(substr($paper['p_abstract'], 0, 300)) . '...'; ?></p>
+         <p><strong>Citation Code:</strong> <?php echo htmlspecialchars($paper['citation_code']); ?></p>
+        <p class="card-text"><strong>Keywords:</strong> <?php echo htmlspecialchars($paper['p_keywords']); ?></p>
+        <p class="card-text"><strong>Field of Study:</strong> <?php echo htmlspecialchars($paper['p_fieldofstudy']); ?></p>
+        <a href="<?php echo htmlspecialchars($paper['p_pdf']); ?>" class="btn-primary" target="_blank">View PDF</a>
+    </div>
+<?php endforeach; ?>
                 <?php else: ?>
                     <div class="alert">
                         No results found for your search query.
