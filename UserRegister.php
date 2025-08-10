@@ -11,6 +11,12 @@
 <body>
     <?php include 'header.php'; ?>
     <div class="register-container">
+        <?php
+           if (isset($_GET['error'])) {
+        $error = htmlspecialchars($_GET['error']);
+        echo '<div style="color: red; text-align: center; margin: 10px 0;">Error: ' . $error . '</div>';
+    }   
+    ?>
         <form action="includes/signup.inc.php" method="post" id="registerForm">
             <h2>User Registration</h2>
             <div class="form-group">

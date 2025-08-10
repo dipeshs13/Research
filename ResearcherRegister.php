@@ -13,6 +13,12 @@
     include 'header.php';
     ?>
     <div class="researcher-reg-form">
+        <?php
+           if (isset($_GET['error'])) {
+        $error = htmlspecialchars($_GET['error']);
+        echo '<div style="color: red; text-align: center; margin: 10px 0;">Error: ' . $error . '</div>';
+    }   
+    ?>
         <h2>Researcher Registration</h2>
         <form action="includes/researcherreg.inc.php" method="POST">
             <div class="form-grid">

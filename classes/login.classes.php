@@ -6,12 +6,12 @@ session_start();
             $stmt = $this->connect()->prepare($query);
             
             if(!$stmt->execute([$email])){
-                header('location:../index.php?error=stmtfailed');
+                header('location:../UserLogin.php?error=stmtfailed');
                 exit();
             }
     
             if($stmt->rowCount() == 0){
-                header('location:../index.php?error=User not found');
+                header('location:../UserLogin.php?error=User not found');
                 exit();
             } else {
                 // Fetch the single user as an associative array

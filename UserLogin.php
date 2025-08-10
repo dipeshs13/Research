@@ -9,6 +9,12 @@
 <body>
     <?php include'header.php';?>
     <div class="login-container">
+        <?php
+           if (isset($_GET['error'])) {
+        $error = htmlspecialchars($_GET['error']);
+        echo '<div style="color: red; text-align: center; margin: 10px 0;">Error: ' . $error . '</div>';
+    }   
+    ?>
         <form action="includes/login.inc.php" method="post" id="loginForm">
             <h2>User Login</h2>
             <div class="loginform-group">

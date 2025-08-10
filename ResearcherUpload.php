@@ -14,8 +14,23 @@ include 'ResearcherHeader.php';
 
 <body>
 
+
   <div class="upload-content">
     <div class="upload-header">Upload Research Paper</div>
+      <?php
+  // Display messages at top of page based on URL parameters
+  if (isset($_GET['upload'])) {
+    $uploadStatus = htmlspecialchars($_GET['upload']);
+    if ($uploadStatus === 'success') {
+      echo '<div style="color: green;">Paper uploaded successfully!</div>';
+    }
+  }
+
+  if (isset($_GET['error'])) {
+    $errorMsg = htmlspecialchars($_GET['error']);
+    echo '<div style="color: red;">Error: ' . $errorMsg . '</div>';
+  }
+  ?>
     <div class="upload-container">
       <form class="upload-form" method="POST" action="includes/pdf.inc.php" enctype="multipart/form-data">
         <input type="hidden" name="researcher_id" value="<?php echo $researcherId; ?>" />

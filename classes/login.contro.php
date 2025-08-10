@@ -9,7 +9,7 @@ class LoginContro extends Login {
     }
     public function loginUser(){
         if($this->emptyInput()==false){
-          header('location:../login.php?error=emptyInput');
+          header('location:../UserLogin.php?error=emptyInput');
           exit();
         }
        

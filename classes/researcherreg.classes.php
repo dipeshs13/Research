@@ -7,7 +7,7 @@ class Researcherreg extends dbh_Connection {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
         if(!$stmt->execute([$fullname, $email, $hashed_password, $institution, $field_of_research, $country, $biography, $research_interests])){
-            header('location:../index.php?error=stmtfailed');
+            header('location:../ResearcherRegister.php?error=stmtfailed');
             exit();
         }
     }
@@ -16,7 +16,7 @@ class Researcherreg extends dbh_Connection {
         $stmt = $this->connect()->prepare($query);
 
         if(!$stmt->execute([$email])){
-            header("location:../index.php?error=stmtfailed");
+            header("location:../ResearcherRegister.php?error=stmtfailed");
             exit();
         }
         $result = true;
