@@ -62,6 +62,8 @@
                     <tr>
                         <th class="paper-desc1">Title</th>
                         <th class="paper-desc1">Researcher</th>
+                        <th class="paper-desc1">Abstract</th>
+                        <th class="paper-desc1">Keywords</th>
                         <th class="paper-desc1">Submitted On</th>
                         <th class="paper-desc1">File</th>
                         <th class="paper-desc1">Actions</th>
@@ -76,6 +78,8 @@
                             $ResearcherInfo = $Paperdata->researcherDetails($rid); // Assume this returns an associative array
                             echo '<td class="paper-desc">' . $ResearcherInfo['r_fullname'] . '</td>';
                             ?>
+                            <td class="paper-desc"><?php echo $paper['p_abstract']; ?></td>
+                            <td class="paper-desc"><?php echo $paper['p_keywords']; ?></td>
                             <!-- <td class="paper-desc"><?php echo $paper['p_submitted_on']; ?></td> -->
                             <!-- <td>2025-05-24</td> -->
                             <td class="paper-desc"><?php echo $paper['Timestamp']; ?></td>
